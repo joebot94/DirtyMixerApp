@@ -1,3 +1,4 @@
+import JoebotSDK
 import SwiftUI
 
 struct MainBoardView: View {
@@ -26,19 +27,13 @@ struct MainBoardView: View {
         .background(Color(red: 0.08, green: 0.08, blue: 0.10))
         .toolbar {
             ToolbarItemGroup {
-                Button(boardState.isConnected ? "Disconnect" : "Connect") {
-                    boardState.toggleConnection()
-                }
-                .keyboardShortcut("k", modifiers: [.command])
-
-                Button("Load Project") {}
-                Button("Save Project") {}
-
-                Divider()
-
                 Button(boardState.mode.rawValue) {
                     boardState.toggleMode()
                 }
+
+                Divider()
+
+                NexusStatusIndicator(client: boardState.nexusClient)
             }
         }
     }

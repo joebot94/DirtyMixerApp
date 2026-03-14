@@ -10,7 +10,15 @@ let package = Package(
     products: [
         .executable(name: "DirtyMixerApp", targets: ["DirtyMixerApp"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/joebot94/joebotsdk.git", branch: "main")
+    ],
     targets: [
-        .executableTarget(name: "DirtyMixerApp")
+        .executableTarget(
+            name: "DirtyMixerApp",
+            dependencies: [
+                .product(name: "JoebotSDK", package: "JoebotSDK")
+            ]
+        )
     ]
 )
